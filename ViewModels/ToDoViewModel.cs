@@ -4,27 +4,38 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text.Json;
 using System.Windows.Input;
+using MVVM_API_SampleProject.Services;
 
 
 namespace MVVM_API_SampleProject.ViewModels;
 
 internal partial class ToDoViewModel : ObservableObject, IDisposable
 {
-    private readonly HttpClient _client;
-
-    private readonly JsonSerializerOptions _serializerOptions;
-    private readonly string _baseUrl = "https://jsonplaceholder.typicode.com";
+    private readonly ToDoServices _todoService;
 
     [ObservableProperty]
-    public int _UserOd;
+    public int _UserId;
     [ObservableProperty]
     public int _Id;
     [ObservableProperty]
     public string _Title;
     [ObservableProperty]
-    public string _Body;
+    public bool _Completed;
+    [ObservableProperty]
+    public ObservableCollection<ToDo> _todos;
 
-    public ObservableCollection<Post> Posts;
+    public ToDoViewModel()
+    {
+        Todos = new ObservableCollection<ToDo>();
+        _todoService = new ToDoServices();
+    }
+
+    public ICommand GetToDoCommand => new Command(async () => await LoadToDoAsync());
+
+    private async Task LoadToDoAsync()
+    {
+        Todos = await _todoService.GetToDoAsync();
+    }
 
     public void Dispose()
     {
