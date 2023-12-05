@@ -10,10 +10,6 @@
             <Entry Placeholder="Titulo do Post" Text="{Binding Post.Title}"/>
             <Entry Placeholder="Id Post" Text="{Binding Post.Body}"/>
 
-            <HorizontalStackLayout>
-                <Button Text="Carregar Posts" Command="{Binding GetPostsCommand}"/>
-            </HorizontalStackLayout>
-
             <CollectionView x:Name="PostsCollection" ItemsSource="{Binding Posts}" EmptyView="Nenhum post encontrado">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"/>

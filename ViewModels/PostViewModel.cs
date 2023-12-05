@@ -22,13 +22,17 @@ internal partial class PostViewModel : ObservableObject, IDisposable
     [ObservableProperty]
     public ObservableCollection<Post> _posts;
 
+    public ICommand GetPostsCommand { get; }
+
     public PostViewModel()
     {
         Posts = new ObservableCollection<Post>();
         _postService = new PostService();
+
+        GetPostsCommand = new Command(async () => await LoadPostsAsync()); //
+        Task.Run(async () => await LoadPostsAsync());
     }
 
-    public ICommand GetPostsCommand => new Command(async () => await LoadPostsAsync());
 
     private async Task LoadPostsAsync()
     {
