@@ -5,16 +5,11 @@
              Title="ToDoView">
     <ScrollView>
         <VerticalStackLayout>
-            <Entry Placeholder="user id" Text="{Binding ToDo.UserId}" />
-            <Entry Placeholder="id" Text="{Binding ToDo.Id}" />
-            <Entry Placeholder="Title" Text="{Binding ToDo.Title}" />
-            <Entry Placeholder="Completed" Text="{Binding ToDo.Completed}" />
-            
             <HorizontalStackLayout>
                 <Button Text="Carregar ToDos" Command="{Binding GetToDoCommand}"/>
             </HorizontalStackLayout>
 
-            <CollectionView x:Name="PostsCollection" ItemsSource="{Binding Todos}" EmptyView="Nenhum post encontrado">
+            <CollectionView x:Name="TodosCollection" ItemsSource="{Binding Todos}" EmptyView="Nenhum Todos encontrado">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
