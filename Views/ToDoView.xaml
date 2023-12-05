@@ -5,9 +5,6 @@
              Title="ToDoView">
     <ScrollView>
         <VerticalStackLayout>
-            <HorizontalStackLayout>
-                <Button Text="Carregar ToDos" Command="{Binding GetToDoCommand}"/>
-            </HorizontalStackLayout>
 
             <CollectionView x:Name="TodosCollection" ItemsSource="{Binding Todos}" EmptyView="Nenhum Todos encontrado">
                 <CollectionView.ItemsLayout>

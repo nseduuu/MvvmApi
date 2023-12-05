@@ -24,13 +24,18 @@ internal partial class ToDoViewModel : ObservableObject, IDisposable
     [ObservableProperty]
     public ObservableCollection<ToDo> _todos;
 
+
+    public ICommand GetToDoCommand { get; }
+
     public ToDoViewModel()
     {
         Todos = new ObservableCollection<ToDo>();
         _todoService = new ToDoServices();
+
+        GetToDoCommand = new Command(async () => await LoadToDoAsync()); //
+        Task.Run(async () => await LoadToDoAsync());
     }
 
-    public ICommand GetToDoCommand => new Command(async () => await LoadToDoAsync());
 
     private async Task LoadToDoAsync()
     {
